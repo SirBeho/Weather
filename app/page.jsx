@@ -31,21 +31,22 @@ export default function Home() {
         getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=metric&appid=86494431ca9876c4d8464ba7fed2349a`,setData);
     }, []);
 
-    useEffect(() => {
+    /* useEffect(() => {
         setMedida(medida2);
     }, [Data]);
 
     function cambiar(units){
         getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=${units}&appid=86494431ca9876c4d8464ba7fed2349a`, setData);
         setMedida2(units);
+    } */
+
+    function cambiar(units){
+        getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=${units}&appid=86494431ca9876c4d8464ba7fed2349a`, setData);
+        setMedida(units);
     }
-
     
-    console.log(pais);
-
-    console.log(Data);
     if(Data.length == 0){
-        return (<h1>No hay datos</h1>);
+        return (<h1 className="d-flex justify-content-center ">Cargando...</h1>);
     }
     
     return (
@@ -61,7 +62,7 @@ export default function Home() {
                 
                 {Data.map((dato, index) => {
                     if (index > 0 && index < 6) {
-                        return <Card id={index} dato={dato} medida={medida}/>;
+                        return <Card key={index} id={index} dato={dato} medida={medida}/>;
                     } 
                      return null; 
                 })}

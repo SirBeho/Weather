@@ -2,6 +2,8 @@ import React from 'react'
 import Image from "next/image"
 
 export default function SideBar() {
+
+
   return (
     <div className="sideBar col-sm-4 d-flex px-0 py-1 flex-column text-center" style={{background:"#1e213a"}}> 
             <div className='d-flex justify-content-between p-4'>

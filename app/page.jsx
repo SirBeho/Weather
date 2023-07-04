@@ -12,22 +12,23 @@ export default function Home() {
            <div className="col-sm-8 d-flex justify-content-center" style={{background:"#100e1d"}}>
             <div className="p-3" style={{ maxWidth:"700px"}}>
                 <div className="d-flex mb-3 py-2 gap-2 justify-content-end">
-                    botones
-                    botones
+                    <button className="rounded-circle" style={{width:"2rem" ,height:"2rem"}}>C</button>
+                    <button className="rounded-circle" style={{width:"2rem" ,height:"2rem"}}>F</button>
                 </div>
                 <div className="d-flex gap-4 my-5 justify-content-center flex-wrap" >
-                    cartas
-                    cartas
-                    cartas
-                    cartas
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
                 </div>
                 <div className="p-2">
                     <span className="fs-4 fw-semibold">Today&apos;s Hightlights</span>
                     <div className="row gap-3 p-3 justify-content-center justify-content-md-between ">
-                        bigcartas
-                        bigcartas
-                        bigcartas
-                        bigcartas
+                        <Bcard/>
+                        <Bcard/>
+                        <Bcard/>
+                        <Bcard/>
                     </div>
                 </div>
                 <footer>

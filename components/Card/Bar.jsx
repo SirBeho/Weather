@@ -8,7 +8,7 @@ export default function Bar({percent}) {
             <span>50</span>
             <span>100</span>
         </div>
-        <div className="progress " role="progressbar" aria-label="Example "  aria-valuemin="0" aria-valuemax="100" style={{height:"0.5rem"}}>
+        <div className="progress " role="progressbar" aria-label="Example "  aria-valuemin="0" aria-valuemax="100" style={{height:"0.5rem",background:"white"}}>
             <div className="progress-bar" style={{width:percent+"%",background:"#ffec65"}}></div>
         </div> 
         <p className="text-end m-0">%</p>

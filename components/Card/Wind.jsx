@@ -3,7 +3,7 @@ import Arrow from './Arrow'
 
 export default function Wind({degree}) {
 
-    
+   
 const direccion = (degree) => {
     const grados = {
         0: 'N',

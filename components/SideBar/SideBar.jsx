@@ -1,9 +1,15 @@
 import React from 'react'
 import Image from "next/image"
 
-export default function SideBar() {
+export default function SideBar({data,medida}) {
 
+  let hoy = new Date();
+  let fecha = `${hoy.toLocaleString('en-US', { weekday: 'short' })}, ${hoy.getDate()} ${hoy.toLocaleString('en-US', { month: 'short' })}`;
 
+  console.log(fecha);
+  
+ 
+  console.log(data)
   return (
     <div className="sideBar col-sm-4 d-flex px-0 py-1 flex-column text-center" style={{background:"#1e213a"}}> 
             <div className='d-flex justify-content-between p-4'>
@@ -19,11 +25,14 @@ export default function SideBar() {
              }}>
                   <Image src="/Shower.png" alt="tiempos" width={"1200"} height={"1200"} layout="responsive" />
             </div>
-            <span className='px-4 'style={{fontSize:"120px"}}>15 c</span>
-            <span className='p-5 fs-2'>Shower</span>
-            <span className='p-4'>Today . Fri. 5 Jun</span>
+            <div>
+              <span className=''style={{fontSize:"120px"}}>{Math.round(data.temp.min)}</span>
+              <span className='fs-1 text-secondary'>{medida=="metric" ? "°C" : "°F"}</span>
+            </div>
+
+            <span className='p-5 fs-2'>{data.weather[0].description}</span>
+            <span className='p-4'>Today . {fecha }</span>
            <div className=''>
-              
               <span>Helsinki</span>
            </div>
     </div>

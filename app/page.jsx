@@ -1,7 +1,7 @@
 'use client'
 import SideBar from "@/components/SideBar/SideBar"
 import Card from "@/components/Card/Card"
-
+import Image from "next/image"
 import { useEffect, useState } from "react"
 import BCards from "@/components/Card/BCards";
 
@@ -48,12 +48,28 @@ export default function Home() {
     }, [medida,coord]);
 
     
-    if(Data.length == 0){
-        return (<h1 className="d-flex justify-content-center ">Cargando...</h1>);
-    }
+     if(Data.length == 0){
+        return (<div className="d-flex vh-100 flex-column justify-content-center align-items-center" style={{background:"#33495f"}}>
+                    <div className="w-50">
+                            <Image src="/fondo.gif" alt="tiempo" width={"1200"} height={"1200"}  layout="responsive"/>
+                    </div>
+                    <div style={{width:"150px"}}>
+                        <Image  src="/loading-12.gif" alt="tiempo" width={"1200"} height={"1200"}  layout="responsive"/>
+                    </div>
+            </div>);
+     }
     
     return (
         <div className=" d-flex row min-vh-100 vw-100 m-0 text-white">
+            <div className={`sideBar ${Data.length == 0 ? "activa":""} d-flex vh-100 flex-column justify-content-center align-items-center`} style={{background:"#33495f",zIndex: "2",position: "absolute"}}>
+                    <div className="w-50">
+                            <Image src="/fondo.gif" alt="tiempo" width={"1200"} height={"1200"}  layout="responsive"/>
+                    </div>
+                    <div style={{width:"150px"}}>
+                        <Image  src="/loading-12.gif" alt="tiempo" width={"1200"} height={"1200"}  layout="responsive"/>
+                    </div>
+            </div>
+
            <SideBar data={Data[0]} medida={medida} setCoord={setCoord} />
            <div className="col-sm-8 d-flex justify-content-center" style={{background:"#100e1d"}}>
             <div className="p-3" style={{ maxWidth:"700px"}}>

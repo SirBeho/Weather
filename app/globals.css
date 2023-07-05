@@ -10,31 +10,24 @@
     box-sizing: border-box;
 }
 body{
-    background-color: antiquewhite;
+    background-color: #100e1d;
 }
-span{
-    color: #E7E7EB;
-}
-
 .bar span,.bar p{
    color:#A09FB1;
    font-size: 12px;
 }
 
-
-.mundo{
+  .mundo{
     fill: #616475;
   }
   .mundo:hover{
     fill: white;
-    cursor: pointer;
   }
 
   .sideBar {
     transform: translateX(-100%);
     transition: transform 1s ease-in-out;
   }
-  
   .sideBar.activa {
     transform: translateX(0%);
   }

@@ -45,27 +45,27 @@ export default function SearchPais({fun}) {
     }
     
     const handleChange = (event,abr) => {
-      console.log("click")
+      console.log("click",abr)
       fun(abr);
+      setFiltrado([]);
       setLocalValue(event.target.textContent);
     };
 
     const handleInputChange = (event) => {
-      console.log(event.target.textContent)
+      fun("");
+      console.log(event.target.value)
       setLocalValue(event.target.value);
+      filterList(event.target.value)
     };
   
-    useEffect(() => {
+   /*  useEffect(() => {
       filterList(localValue)
     }, [localValue]);
-  
-    let hoy = new Date();
-    let fecha = `${hoy.toLocaleString('en-US', { weekday: 'short' })}, ${hoy.getDate()} ${hoy.toLocaleString('en-US', { month: 'short' })}`;
-  
-    
+       */
+      
     return(
-      <>
-        <section className="Pais">
+      
+     <div className="Pais">
         <label className="w-100 rounded-4 py-2 px-4 active" htmlFor="location">Pais
           <input  placeholder="Escriba una pais" value={localValue} onChange={handleInputChange} type="text" className="outline-none border border-0 ms-2 " style={{outline : "none"}} />
         </label>
@@ -76,13 +76,13 @@ export default function SearchPais({fun}) {
           return (
               <div key={index} className="pe-auto d-flex m-3 ">
                   {/* <span className="pe-auto material-symbols-outlined ">search</span> */}
-              <a className="pe-auto text-white link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" onClick={(e) => handleChange(e,dato.abr)} >{dato.nombre}</a>
+              <a className="pe-auto text-white link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" onClick={(e) => handleChange(e,dato.abrev)} >{dato.nombre}</a>
           </div>
           )})}
-        </section>
+    </div>
   
   
   
-      </>
+    
     )
 }

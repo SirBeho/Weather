@@ -10,16 +10,14 @@ export default function Home() {
 
 
     const [Data, setData] = useState([]);
-    const [pais , setPais] = useState([]);
-    const [medida , setMedida] = useState("metric");
+    const [coord, setCoord] = useState({});
+    const [medida, setMedida] = useState("metric");
     
-
-    
-    const getUsers = async (url,funcion) => {
+    const getUsers = async (url) => {
       try {
         const res = await fetch(url);
         const resJson = await res.json();
-        funcion(resJson.daily);
+        setData(resJson.daily);
         console.log(resJson.daily);
 
       } catch (error) {
@@ -28,8 +26,7 @@ export default function Home() {
     };
   
     useEffect(() => {
-        // getUsers(,setPais)
-        getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=metric&appid=86494431ca9876c4d8464ba7fed2349a`,setData);
+        getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=metric&appid=86494431ca9876c4d8464ba7fed2349a`);
     }, []);
 
     /* useEffect(() => {
@@ -39,39 +36,25 @@ export default function Home() {
     function cambiar(units){
         getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=${units}&appid=86494431ca9876c4d8464ba7fed2349a`, setData);
         setMedida2(units);
-    } */
+    } 
 
-    /* function cambiar(units){
+     function cambiar(units){
         getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=${units}&appid=86494431ca9876c4d8464ba7fed2349a`, setData);
         setMedida(units);
     } */
 
     useEffect(() => {
-        getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=${medida}&appid=86494431ca9876c4d8464ba7fed2349a`, setData);
-    }, [medida]);
+       getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=${coord.lat}&lon=${coord.lon}&units=${medida}&appid=86494431ca9876c4d8464ba7fed2349a`);
+    }, [medida,coord]);
 
     
     if(Data.length == 0){
         return (<h1 className="d-flex justify-content-center ">Cargando...</h1>);
     }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return (
         <div className=" d-flex row min-vh-100 vw-100 m-0 text-white">
-           <SideBar data={Data[0]} medida={medida}/>
+           <SideBar data={Data[0]} medida={medida} setCoord={setCoord} />
            <div className="col-sm-8 d-flex justify-content-center" style={{background:"#100e1d"}}>
             <div className="p-3" style={{ maxWidth:"700px"}}>
                 <div className="d-flex mb-3 py-2 gap-2 justify-content-end">

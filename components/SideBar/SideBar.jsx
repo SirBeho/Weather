@@ -74,26 +74,28 @@ export default function SideBar({data,medida,setCoord}) {
   );
 
   
-  if(search)
+ /*  if(search)
   return(
     <div className="sideBar col-sm-4 d-flex px-0 py-1 flex-column text-center min-vh-100" style={{background:"#1e213a"}}> 
       <div className="d-flex justify-content-end pe-3">{equis}</div>
       <SearchCiudad pais={pais} setCoord={setCoord} setCiudad={setCiudad} searchPais={searchPais} setsearchPais={setsearchPais} setsearch={setsearch}/>
       <SearchPais fun={setPais} active={searchPais}/>
     </div>
-  )
+  ) */
   
   return (
-        <>
-    <div className={`sideBar col-sm-4 ${search ? "d-flex" : "d-none"}  px-0 py-1 flex-column text-center min-vh-100`} style={{background:"#1e213a"}}> 
+      
+   <div className={`col-sm-4 d-flex px-0 py-1 position-relative min-vh-100`} style={{background:"#1e213a"}}> 
+
+    <div className={`sideBar flex-column w-100 text-center  min-vh-100 position-absolute ${search ? "activa" : ""}  `} style={{background:"#1e213a"}} > 
       <div className="d-flex justify-content-end pe-3">{equis}</div>
       <SearchCiudad pais={pais} setCoord={setCoord} setCiudad={setCiudad} searchPais={searchPais} setsearchPais={setsearchPais} setsearch={setsearch}/>
       <SearchPais fun={setPais} active={searchPais}/>
     </div>
 
 
-    <div className={`sideBar col-sm-4 ${search ? "d-none" : "d-flex"} px-0 py-1 flex-column text-center`} style={{background:"#1e213a"}}> 
-            <div className='d-flex justify-content-between p-4'>
+    <div className={` flex-column w-100 text-center d-flex  `} > 
+           <div className='d-flex justify-content-between p-4'>
               <button className="btn btn-secondary rounded-0" onClick={() => setsearch(!search)} >Search for places</button>
               <div className="">{iconTarg}</div>
             </div>
@@ -118,6 +120,7 @@ export default function SideBar({data,medida,setCoord}) {
               {location}{ciudad}
            </div>
     </div>
-    </>
+    </div>
+    
   )
 }

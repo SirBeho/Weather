@@ -31,14 +31,10 @@ span{
   }
 
   .sideBar {
-    /* Estilos iniciales */
-    display: none;
     transform: translateX(-100%);
-    transition: transform 10s ease-in-out;
+    transition: transform 1s ease-in-out;
   }
   
-  .sideBar.d-flex {
-    /* Estilos al aplicar la clase d-flex */
-    display: flex;
+  .sideBar.activa {
     transform: translateX(0%);
   }

@@ -38,3 +38,7 @@ span{
   .sideBar.activa {
     transform: translateX(0%);
   }
+
+  *.cursor:hover{
+    cursor: pointer;
+  }

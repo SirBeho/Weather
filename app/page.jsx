@@ -3,7 +3,7 @@ import SideBar from "@/components/SideBar/SideBar"
 import Card from "@/components/Card/Card"
 
 import { useEffect, useState } from "react"
-import BCars from "@/components/Card/BCars";
+import BCards from "@/components/Card/BCards";
 
 
 export default function Home() {
@@ -16,6 +16,7 @@ export default function Home() {
       try {
         const res = await fetch(url);
         const resJson = await res.json();
+        resJson.daily[0].visibility = resJson.current.visibility;
         setData(resJson.daily);
         console.log(resJson.daily);
 
@@ -70,11 +71,11 @@ export default function Home() {
                 </div>
                 <div className="p-2">
                     <span className="fs-4 fw-semibold">Today&apos;s Hightlights</span>
-                    <BCars data={Data[0] } medida={medida}/>
+                    <BCards data={Data[0] } medida={medida}/>
                 </div>
-                <footer>
-                    <span>Create by Benjamin</span>
-                </footer>
+                <section className="text-center mt-4">
+                    <h3 className="fs-6 text-secondary">created by <b>Benjamin Tavarez</b> - de devChallenges.io</h3>
+                </section> 
             </div>    
             </div>
         </div>

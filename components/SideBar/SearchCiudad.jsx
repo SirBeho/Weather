@@ -53,19 +53,19 @@ export default function SearchCiudad({ pais, setCoord, setCiudad ,setsearchPais,
     setFiltrado(FILTERED);
   }
 
-  const inputClick = (event, city) => {
+  const inputClick = ( city) => {
     setCoord_(city.coord);
     setCiudad_(city.name+" , "+city.country);
     setDisabled(false);
-    console.log("guarda", city.coord,event.target.textContent);
     setFiltrado([]);
-    setLocalValue(event.target.textContent);
+    setLocalValue(city.name+" , "+city.country);
   };
 
   const buscar = () => {
     setsearch(false);
     setCoord(coord_);
     setCiudad(ciudad_);
+    setLocalValue("");
   };
 
 
@@ -98,15 +98,15 @@ export default function SearchCiudad({ pais, setCoord, setCiudad ,setsearchPais,
 
   return (
     <section>
-      <div className="d-flex gap-2  justify-content-center">
-        <label className=" border border-light p-2  active" htmlFor="location">
+      <div className="d-flex gap-2 px-1 justify-content-center">
+        <label className=" border border-light p-1 d-flex active" htmlFor="location">
           {search}
           <input
             placeholder="Escriba una ciudad"
             value={localValue}
             onChange={InputChange}
             type="text"
-            className="outline-none text-white-50 bg-transparent border border-0 ms-2 "
+            className="outline-none text-white-50  w-100 bg-transparent border border-0 ms-2 "
             style={{ outline: "none" }}
           />
           {paisActive}
@@ -114,21 +114,24 @@ export default function SearchCiudad({ pais, setCoord, setCiudad ,setsearchPais,
         </label>
         <button onClick={buscar}type="button" className="btn rounded-0 btn-primary" disabled={disabled}>Search</button>
       </div>
+      <div className="px-2">
       {filtrado.map((dato, index) => {
         if (index > 10) return null;
         return (
-          <div key={index} className="pe-auto d-flex m-3 ">
+          <div key={index} onClick={() => inputClick( dato.city)} className=" d-flex cursor justify-content-between m-3 p-2 border  border-light border-opacity-50">
             {/* <span className="pe-auto material-symbols-outlined ">search</span> */}
             <a
               className="pe-auto text-white link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-              onClick={(e) => inputClick(e, dato.city)}
+              
             >
               {dato.city.name}
               {pais == "" ? " , " + dato.city.country : null}
             </a>
+            <span>&gt;</span>
           </div>
         );
       })}
+      </div>
     </section>
   );
 }

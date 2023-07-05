@@ -74,30 +74,20 @@ export default function SideBar({data,medida,setCoord}) {
   );
 
   
- /*  if(search)
-  return(
-    <div className="sideBar col-sm-4 d-flex px-0 py-1 flex-column text-center min-vh-100" style={{background:"#1e213a"}}> 
-      <div className="d-flex justify-content-end pe-3">{equis}</div>
-      <SearchCiudad pais={pais} setCoord={setCoord} setCiudad={setCiudad} searchPais={searchPais} setsearchPais={setsearchPais} setsearch={setsearch}/>
-      <SearchPais fun={setPais} active={searchPais}/>
-    </div>
-  ) */
-  
   return (
       
-   <div className={`col-sm-4 d-flex px-0 py-1 position-relative min-vh-100`} style={{background:"#1e213a"}}> 
-
-    <div className={`sideBar flex-column w-100 text-center  min-vh-100 position-absolute ${search ? "activa" : ""}  `} style={{background:"#1e213a"}} > 
+   <div className={`col-sm-4 d-flex px-0 py-1 position-relative overflow-hidden min-vh-100`} style={{background:"#1e213a"}}> 
+    
+    <div className={`sideBar flex-column w-100 text-center h-100 position-absolute ${search ? "activa" : ""}  `} style={{background:"#1e213a"}} > 
       <div className="d-flex justify-content-end pe-3">{equis}</div>
       <SearchCiudad pais={pais} setCoord={setCoord} setCiudad={setCiudad} searchPais={searchPais} setsearchPais={setsearchPais} setsearch={setsearch}/>
       <SearchPais fun={setPais} active={searchPais}/>
     </div>
 
-
-    <div className={` flex-column w-100 text-center d-flex  `} > 
-           <div className='d-flex justify-content-between p-4'>
+    <div className={`flex-column w-100 text-center d-flex  `} > 
+           <div className='d-flex  gap-1 justify-content-between align-items-center p-4'>
               <button className="btn btn-secondary rounded-0" onClick={() => setsearch(!search)} >Search for places</button>
-              <div className="">{iconTarg}</div>
+              <div className="cursor">{iconTarg}</div>
             </div>
             <div  className='d-flex align-items-center justify-content-center ' style={{ 
               backgroundImage: "linear-gradient(rgba(30, 33, 58, 0.9), rgba(30, 33, 58, 0.9)), url(/Cloud-background.png)",

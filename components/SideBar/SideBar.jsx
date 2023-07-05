@@ -23,7 +23,7 @@ export default function SideBar({data,medida,setCoord}) {
       const res = await fetch("Ciudades.json");
       const resJson = await res.json();
       setData(resJson);
-      // console.log(resJson);
+       console.log(resJson);
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +77,6 @@ export default function SideBar({data,medida,setCoord}) {
   return (
       
    <div className={`col-sm-4 d-flex px-0 py-1 position-relative overflow-hidden min-vh-100`} style={{background:"#1e213a"}}> 
-    
     <div className={`sideBar flex-column w-100 text-center h-100 position-absolute ${search ? "activa" : ""}  `} style={{background:"#1e213a"}} > 
       <div className="d-flex justify-content-end pe-3">{equis}</div>
       <SearchCiudad pais={pais} setCoord={setCoord} setCiudad={setCiudad} searchPais={searchPais} setsearchPais={setsearchPais} setsearch={setsearch}/>
@@ -85,8 +84,8 @@ export default function SideBar({data,medida,setCoord}) {
     </div>
 
     <div className={`flex-column w-100 text-center d-flex  `} > 
-           <div className='d-flex  gap-1 justify-content-between align-items-center p-4'>
-              <button className="btn btn-secondary rounded-0" onClick={() => setsearch(!search)} >Search for places</button>
+           <div className='d-flex  gap-1 justify-content-between align-items-center p-4 px-sm-2 p-md-4' >
+              <button className="btn btn-secondary rounded-0 " onClick={() => setsearch(!search)} style={{fontSize:"calc(0.5vw + 12px)"}}>Search for places</button>
               <div className="cursor">{iconTarg}</div>
             </div>
             <div  className='d-flex align-items-center justify-content-center ' style={{ 

@@ -42,3 +42,7 @@ span{
   *.cursor:hover{
     cursor: pointer;
   }
+
+  .btn-light *{
+    color: transparent;
+  }

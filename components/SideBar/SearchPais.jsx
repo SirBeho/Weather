@@ -55,6 +55,7 @@ export default function SearchPais({fun,active}) {
     const limpiar =() =>{
       fun("");
       setLocalValue("")
+      setFiltrado([]);
     }
 
     const InputChange = (event) => {
@@ -87,8 +88,8 @@ export default function SearchPais({fun,active}) {
       
     return(
       
-     <div className="mt-2 px-1 d-flex flex-column h-100 flex-wrap align-content-center" >
-            <label style={{maxWidth:"344px"}}className=" border border-light d-flex p-2 w-100 active" htmlFor="location" >
+     <div className="mt-2 px-1  d-flex flex-column h-100 flex-wrap align-items-center" >
+            <label style={{maxWidth:"344px"}}className=" border border-light d-flex p-1 w-100 active" htmlFor="location" >
             {search}
             <input
               placeholder="Filtro por pais"
@@ -102,15 +103,16 @@ export default function SearchPais({fun,active}) {
           </label>
 
           
-          <div className="mx-2">
+          <div className="w-100 " style={{maxWidth:"344px"}} >
             {filtrado.map((dato, index) => {
               if(index > 10) return null;
-            return (
-                <span key={index} className="pe-auto d-flex m-3 ">
-                    {/* <span className="pe-auto material-symbols-outlined ">search</span> */}
-                <a className="pe-auto text-white link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" onClick={(e) => inputClick(e,dato.abrev)} >{dato.nombre}</a>
-            </span>
-          )})}
+            
+              return (
+                <div key={index}  className=" d-flex cursor justify-content-between m-3 p-1 border  border-light border-opacity-50">
+                  <span className="pe-auto text-white " onClick={(e) => inputClick(e,dato.abrev)}>{dato.nombre}</span>
+                </div>
+              );
+          })}
 
         </div>
 

@@ -11,7 +11,6 @@ export default function BCards({data,medida}) {
         <Bcard titulo={"Humidity"} valor={data.humidity} uniValor={"%"}><Bar percent={data.humidity}/></Bcard>
         <Bcard titulo={"Visibility"} valor={medida=="metric" ? data.visibility/1000 : (data.visibility/1609).toFixed(1) } uniValor={medida=="metric" ? " km" : " milles"}></Bcard>
         <Bcard titulo={"Air Presure"} valor={data.pressure} uniValor={"mb"}></Bcard> 
-            
     </div>  
   )
 }

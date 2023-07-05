@@ -57,9 +57,9 @@ export default function Home() {
            <SideBar data={Data[0]} medida={medida} setCoord={setCoord} />
            <div className="col-sm-8 d-flex justify-content-center" style={{background:"#100e1d"}}>
             <div className="p-3" style={{ maxWidth:"700px"}}>
-                <div className="d-flex mb-3 py-2 gap-2 justify-content-end">
-                    <button onClick={() => setMedida("metric")} className="rounded-circle" style={{width:"2rem" ,height:"2rem"}}>°C</button>
-                    <button onClick={() => setMedida("imperial")} className="rounded-circle" style={{width:"2rem" ,height:"2rem"}}>°F</button>
+                <div className="d-flex mb-3 py-2 gap-3 justify-content-end">
+                    <div onClick={() => setMedida("metric")} className={`btn ${medida =="metric" ? "btn-light" : "btn-secondary"} rounded-circle fw-semibold d-flex align-items-center justify-content-center`} style={{width:"2rem" ,height:"2rem"}}>°C</div>
+                    <div onClick={() => setMedida("imperial")} className={`btn ${medida =="imperial" ? "btn-light" : "btn-secondary"}  rounded-circle fw-semibold d-flex align-items-center justify-content-center`} style={{width:"2rem" ,height:"2rem"}}>°F</div>
                 </div>
                 <div className="d-flex gap-4 my-5 justify-content-center flex-wrap" >
                     {Data.map((dato, index) => {
@@ -73,7 +73,7 @@ export default function Home() {
                     <span className="fs-4 fw-semibold">Today&apos;s Hightlights</span>
                     <BCards data={Data[0] } medida={medida}/>
                 </div>
-                <section className="text-center mt-4">
+                <section className="text-center mt-5">
                     <h3 className="fs-6 text-secondary">created by <b>Benjamin Tavarez</b> - de devChallenges.io</h3>
                 </section> 
             </div>    

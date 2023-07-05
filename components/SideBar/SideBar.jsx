@@ -11,12 +11,12 @@ export default function SideBar({data,medida,setCoord}) {
 
   const [Data, setData] = useState([]);
   const [pais, setPais] = useState("");
-  const [ciudad, setCiudad] = useState("");
+  const [ciudad, setCiudad] = useState("Republica Dominicana");
   const [search, setsearch] = useState(false);
+  const [searchPais, setsearchPais] = useState(false);
 
   let hoy = new Date();
   let fecha = `${hoy.toLocaleString('en-US', { weekday: 'short' })}, ${hoy.getDate()} ${hoy.toLocaleString('en-US', { month: 'short' })}`;
-  
 
   const getData = async () => {
     try {
@@ -32,12 +32,12 @@ export default function SideBar({data,medida,setCoord}) {
     getData();
   }, []);
 
-  const funcionInit = () => {
+  const currentLocation = () => {
     const calculateFlatDistance = (lat1, lon1, lat2, lon2) => Math.sqrt((lat2 - lat1) ** 2 + (lon2 - lon1) ** 2);
       
     const onUbicacionConcedida = (ubicacion) => {
       let minDistance = Number.MAX_VALUE;
-      let coord = null;
+      let city = null;
   
       for (const dato of Data) {
         
@@ -51,11 +51,11 @@ export default function SideBar({data,medida,setCoord}) {
         if (distance < minDistance) {
           minDistance = distance;
           console.log("nueva ciudad cercana",dato.city.name,distance)
-          coord = dato.city.coord;
+          city = dato.city;
         }
       }
-  
-      setCoord(coord);
+      setCoord(city.coord);
+      setCiudad(city.name+" , "+city.country)
     };
   
     navigator.geolocation.getCurrentPosition(onUbicacionConcedida);
@@ -66,22 +66,33 @@ export default function SideBar({data,medida,setCoord}) {
     </div>
   );
   const iconTarg = (
-  <svg onClick={funcionInit} xmlns="http://www.w3.org/2000/svg" height="30" width="30" fill="white" viewBox="0 -960 960 960">
+  <svg onClick={currentLocation} xmlns="http://www.w3.org/2000/svg" height="30" width="30" fill="white" viewBox="0 -960 960 960">
    <path d="M450-42v-75q-137-14-228-105T117-450H42v-60h75q14-137 105-228t228-105v-75h60v75q137 14 228 105t105 228h75v60h-75q-14 137-105 228T510-117v75h-60Zm30-134q125 0 214.5-89.5T784-480q0-125-89.5-214.5T480-784q-125 0-214.5 89.5T176-480q0 125 89.5 214.5T480-176Zm0-154q-63 0-106.5-43.5T330-480q0-63 43.5-106.5T480-630q63 0 106.5 43.5T630-480q0 63-43.5 106.5T480-330Z" /></svg>
   );
+  const location = (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#88869d" height="25" viewBox="0 -960 960 960" width="25"><path d="M480.089-490Q509-490 529.5-510.589q20.5-20.588 20.5-49.5Q550-589 529.411-609.5q-20.588-20.5-49.5-20.5Q451-630 430.5-609.411q-20.5 20.588-20.5 49.5Q410-531 430.589-510.5q20.588 20.5 49.5 20.5ZM480-80Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Z"/></svg>
+  );
 
-
+  
   if(search)
   return(
     <div className="sideBar col-sm-4 d-flex px-0 py-1 flex-column text-center min-vh-100" style={{background:"#1e213a"}}> 
       <div className="d-flex justify-content-end pe-3">{equis}</div>
-      <SearchPais fun={setPais}/>
-      <SearchCiudad pais={pais} setCoord={setCoord} setCiudad={setCiudad}/>
+      <SearchCiudad pais={pais} setCoord={setCoord} setCiudad={setCiudad} searchPais={searchPais} setsearchPais={setsearchPais} setsearch={setsearch}/>
+      <SearchPais fun={setPais} active={searchPais}/>
     </div>
   )
   
   return (
-    <div className="sideBar col-sm-4 d-flex px-0 py-1 flex-column text-center" style={{background:"#1e213a"}}> 
+        <>
+    <div className={`sideBar col-sm-4 ${search ? "d-flex" : "d-none"}  px-0 py-1 flex-column text-center min-vh-100`} style={{background:"#1e213a"}}> 
+      <div className="d-flex justify-content-end pe-3">{equis}</div>
+      <SearchCiudad pais={pais} setCoord={setCoord} setCiudad={setCiudad} searchPais={searchPais} setsearchPais={setsearchPais} setsearch={setsearch}/>
+      <SearchPais fun={setPais} active={searchPais}/>
+    </div>
+
+
+    <div className={`sideBar col-sm-4 ${search ? "d-none" : "d-flex"} px-0 py-1 flex-column text-center`} style={{background:"#1e213a"}}> 
             <div className='d-flex justify-content-between p-4'>
               <button className="btn btn-secondary rounded-0" onClick={() => setsearch(!search)} >Search for places</button>
               <div className="">{iconTarg}</div>
@@ -91,9 +102,10 @@ export default function SideBar({data,medida,setCoord}) {
               backgroundSize: "150%",
               backgroundPosition: "bottom",
               backgroundRepeat: "no-repeat",
-              padding: "10% 25%"
+              padding: "10% 25%",
+              height:"320"
              }}>
-                  <Image src="/Shower.png" alt="tiempos" width={"1200"} height={"1200"} layout="responsive" />
+            <Image src={`/${data.weather[0].icon.replace("n", "d")}.png`} alt="tiempo" width={"1200"} height={"1200"} layout="responsive" />
             </div>
             <div>
               <span className=''style={{fontSize:"120px"}}>{Math.round(data.temp.min)}</span>
@@ -102,9 +114,10 @@ export default function SideBar({data,medida,setCoord}) {
 
             <span className='p-5 fs-2'>{data.weather[0].description}</span>
             <span className='p-4'>Today . {fecha }</span>
-           <div className=''>
-              <span>Helsinki</span>
+           <div className='d-flex align-items-center justify-content-center'>
+              {location}{ciudad}
            </div>
     </div>
+    </>
   )
 }

@@ -13,8 +13,7 @@ export default function Card({dato,id,medida}) {
         <div className="p-3 text-center" style={{ backgroundColor: "#1e213a",width:"7rem"}} >
             <span style={{ fontSize: "15px"}}>{id== 1? "Tomorrow" : fecha}</span>
             
-            <div className="p-3">
-               
+            <div className="p-3" style={{height:"87px"}}>
               <Image src={`/${dato.weather[0].icon.replace("n", "d")}.png`} alt="tiempo" width={"1200"} height={"1200"} layout="responsive" />
             </div>
             <div className="d-flex justify-content-between">  

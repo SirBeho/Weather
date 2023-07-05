@@ -51,6 +51,7 @@ export default function SearchCiudad({ pais, setCoord }) {
   const handleChange = (event,coord) => {
     console.log("click",coord);
     setCoord(coord);
+    
     setFiltrado([]);
     setLocalValue(event.target.textContent);
   };
@@ -59,6 +60,7 @@ export default function SearchCiudad({ pais, setCoord }) {
     console.log(event.target.value);
     setLocalValue(event.target.value);
     filterList(event.target.value);
+    console.log(filtrado);
   };
 
   return (

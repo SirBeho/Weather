@@ -8,9 +8,8 @@ import BCars from "@/components/Card/BCars";
 
 export default function Home() {
 
-
     const [Data, setData] = useState([]);
-    const [coord, setCoord] = useState({});
+    const [coord, setCoord] = useState({lat:"18.35",lon:-"71.58"});
     const [medida, setMedida] = useState("metric");
     
     const getUsers = async (url) => {
@@ -62,14 +61,12 @@ export default function Home() {
                     <button onClick={() => setMedida("imperial")} className="rounded-circle" style={{width:"2rem" ,height:"2rem"}}>°F</button>
                 </div>
                 <div className="d-flex gap-4 my-5 justify-content-center flex-wrap" >
-                
-                {Data.map((dato, index) => {
-                    if (index > 0 && index < 6) {
-                        return <Card key={index} id={index} dato={dato} medida={medida}/>;
-                    } 
-                     return null; 
-                })}
-
+                    {Data.map((dato, index) => {
+                        if (index > 0 && index < 6) {
+                            return <Card key={index} id={index} dato={dato} medida={medida}/>;
+                        } 
+                        return null; 
+                    })}
                 </div>
                 <div className="p-2">
                     <span className="fs-4 fw-semibold">Today&apos;s Hightlights</span>

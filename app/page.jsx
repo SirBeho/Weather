@@ -12,7 +12,8 @@ export default function Home() {
     const [Data, setData] = useState([]);
     const [pais , setPais] = useState([]);
     const [medida , setMedida] = useState("metric");
-    const [medida2 , setMedida2] = useState("metric");
+    
+
     
     const getUsers = async (url,funcion) => {
       try {
@@ -40,23 +41,42 @@ export default function Home() {
         setMedida2(units);
     } */
 
-    function cambiar(units){
+    /* function cambiar(units){
         getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=${units}&appid=86494431ca9876c4d8464ba7fed2349a`, setData);
         setMedida(units);
-    }
+    } */
+
+    useEffect(() => {
+        getUsers(`https://api.openweathermap.org/data/3.0/onecall?lat=18.35&lon=-71.58&units=${medida}&appid=86494431ca9876c4d8464ba7fed2349a`, setData);
+    }, [medida]);
+
     
     if(Data.length == 0){
         return (<h1 className="d-flex justify-content-center ">Cargando...</h1>);
     }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div className=" d-flex row min-vh-100 vw-100 m-0 text-white">
            <SideBar data={Data[0]} medida={medida}/>
            <div className="col-sm-8 d-flex justify-content-center" style={{background:"#100e1d"}}>
             <div className="p-3" style={{ maxWidth:"700px"}}>
                 <div className="d-flex mb-3 py-2 gap-2 justify-content-end">
-                    <button onClick={() => cambiar("metric")} className="rounded-circle" style={{width:"2rem" ,height:"2rem"}}>°C</button>
-                    <button onClick={() => cambiar("imperial")} className="rounded-circle" style={{width:"2rem" ,height:"2rem"}}>°F</button>
+                    <button onClick={() => setMedida("metric")} className="rounded-circle" style={{width:"2rem" ,height:"2rem"}}>°C</button>
+                    <button onClick={() => setMedida("imperial")} className="rounded-circle" style={{width:"2rem" ,height:"2rem"}}>°F</button>
                 </div>
                 <div className="d-flex gap-4 my-5 justify-content-center flex-wrap" >
                 

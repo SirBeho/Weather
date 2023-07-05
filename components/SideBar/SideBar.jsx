@@ -1,15 +1,23 @@
+import { useEffect, useState } from "react";
 import React from 'react'
 import Image from "next/image"
+import SearchPais from "./SearchPais";
+
 
 export default function SideBar({data,medida}) {
 
-  let hoy = new Date();
-  let fecha = `${hoy.toLocaleString('en-US', { weekday: 'short' })}, ${hoy.getDate()} ${hoy.toLocaleString('en-US', { month: 'short' })}`;
-
-  console.log(fecha);
+  const [pais, setPais] = useState([]);
   
- 
-  console.log(data)
+  return(
+    <div className="sideBar col-sm-4 d-flex px-0 py-1 flex-column text-center" style={{background:"#1e213a"}}> 
+      <h1>hola: {pais}</h1>
+      <SearchPais fun={setPais}/>
+    </div>
+  )
+  
+  
+  
+  
   return (
     <div className="sideBar col-sm-4 d-flex px-0 py-1 flex-column text-center" style={{background:"#1e213a"}}> 
             <div className='d-flex justify-content-between p-4'>

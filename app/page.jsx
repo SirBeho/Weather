@@ -43,7 +43,7 @@ export default function Home() {
           <>
           {/* Barra lateral */}
           <SideBar data={Data[0]} medida={medida} setCoord={setCoord} /> 
-          <div className="col-sm-8 d-flex justify-content-center" style={{ background: "#100e1d" }}>
+          <div className="col-sm-8 d-flex flex-column justify-content-between align-items-center" style={{ background: "#100e1d" }}>
             <div className="p-3" style={{ maxWidth: "700px" }}>
               {/* Botones de cambio de unidad de medida */}
               <div className="d-flex mb-3 py-2 gap-3 justify-content-end">
@@ -62,12 +62,11 @@ export default function Home() {
                 <BCards data={Data[0]} medida={medida} />
               </div>
               {/* Creditos a mi persona */}
-              <section className="text-center mt-5">
-                <h3 className="fs-6 text-secondary">
-                  created by <b>Benjamin Tavarez</b> -de devChallenges.io
-                </h3>
-              </section>
+              
             </div>
+            <span style={{fontSize: "90%"}} className="text-center  text-secondary">
+                  created by <b>Benjamin Tavarez</b> -de devChallenges.io
+              </span>
           </div>
         </>
       )}

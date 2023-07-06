@@ -58,7 +58,7 @@ export default function Home() {
               </div>
               {/* Componente de tarjetas de resumen */}
               <div className="p-2">
-                <span className="fs-4 fw-semibold">Today's Highlights</span>
+                <span className="fs-4 fw-semibold">Today&apos;s Highlights</span>
                 <BCards data={Data[0]} medida={medida} />
               </div>
               {/* Creditos a mi persona */}
